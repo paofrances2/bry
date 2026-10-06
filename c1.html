@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Velocity Motors | Loja de Carros Esportivos</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#070707;
+    color:white;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:rgba(0,0,0,.95);
+    border-bottom:1px solid #292929;
+}
+
+nav{
+    max-width:1200px;
+    height:75px;
+    margin:auto;
+    padding:0 20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#e50914;
+}
+
+nav ul{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+nav a:hover{
+    color:#e50914;
+}
+
+.btn{
+    border:0;
+    background:#e50914;
+    color:white;
+    padding:12px 20px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#ff2935;
+}
+
+.btn-outline{
+    border:1px solid white;
+    color:white;
+    background:transparent;
+    padding:11px 18px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.hero{
+    min-height:650px;
+
+    display:flex;
+    align-items:center;
+
+    background:
+    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=90");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    max-width:1200px;
+    width:100%;
+    margin:auto;
+    padding:30px 20px;
+}
+
+.hero small{
+    color:#e50914;
+    font-weight:bold;
+    letter-spacing:4px;
+}
+
+.hero h1{
+    font-size:clamp(45px,7vw,90px);
+    line-height:.95;
+    margin:20px 0;
+}
+
+.hero h1 span{
+    color:#e50914;
+}
+
+.hero p{
+    max-width:600px;
+    color:#ccc;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.hero-buttons{
+    margin-top:30px;
+    display:flex;
+    gap:12px;
+}
+
+section{
+    padding:85px 20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.title{
+    margin-bottom:35px;
+}
+
+.title small{
+    color:#e50914;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.title h2{
+    font-size:40px;
+    margin-top:10px;
+}
+
+.title p{
+    color:#888;
+    margin-top:8px;
+}
+
+/* CARROS */
+
+.filters{
+    display:flex;
+    gap:10px;
+    margin-bottom:30px;
+}
+
+.filters input,
+.filters select{
+    background:#111;
+    border:1px solid #333;
+    color:white;
+    padding:14px;
+    border-radius:7px;
+}
+
+.filters input{
+    flex:1;
+}
+
+.cars{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.car-card{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:15px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.car-card:hover{
+    transform:translateY(-5px);
+    border-color:#e50914;
+}
+
+.car-image{
+    height:230px;
+    position:relative;
+    overflow:hidden;
+}
+
+.car-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.year{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:#e50914;
+    padding:7px 12px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.car-info{
+    padding:20px;
+}
+
+.brand{
+    color:#e50914;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.car-info h3{
+    font-size:25px;
+    margin:5px 0 15px;
+}
+
+.specs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+}
+
+.spec{
+    background:#080808;
+    padding:9px;
+    border-radius:7px;
+    text-align:center;
+}
+
+.spec strong{
+    display:block;
+    font-size:13px;
+}
+
+.spec span{
+    color:#777;
+    font-size:10px;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.car-buttons{
+    display:flex;
+    gap:8px;
+}
+
+.car-buttons button{
+    flex:1;
+}
+
+/* PEÇAS */
+
+#pecas{
+    background:#0c0c0c;
+}
+
+.parts{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.part{
+    background:#131313;
+    border:1px solid #292929;
+    border-radius:12px;
+    padding:20px;
+
+    display:grid;
+    grid-template-columns:55px 1fr auto;
+    align-items:center;
+    gap:15px;
+}
+
+.part-icon{
+    width:55px;
+    height:55px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#261013;
+    border-radius:10px;
+    font-size:25px;
+}
+
+.part p{
+    color:#888;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.part-price{
+    color:#d8ad63;
+    font-weight:bold;
+}
+
+/* CHECKOUT */
+
+#checkout{
+    background:#0b0b0b;
+    display:none;
+}
+
+.checkout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.checkout-box{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:15px;
+    padding:30px;
+}
+
+.checkout-box h3{
+    margin-bottom:20px;
+    font-size:24px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    color:#bbb;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    background:#080808;
+    border:1px solid #333;
+    color:white;
+    padding:14px;
+    border-radius:7px;
+}
+
+.order-car{
+    display:flex;
+    gap:15px;
+    padding-bottom:20px;
+    border-bottom:1px solid #292929;
+}
+
+.order-car img{
+    width:150px;
+    height:100px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.order-car h4{
+    font-size:20px;
+}
+
+.order-price{
+    margin-top:15px;
+    font-size:25px;
+    color:#d8ad63;
+    font-weight:bold;
+}
+
+.payment{
+    margin-top:20px;
+}
+
+.payment-option{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    background:#080808;
+    border:1px solid #333;
+    padding:14px;
+    margin-top:8px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.confirmation{
+    display:none;
+    text-align:center;
+    background:#101b13;
+    border:1px solid #1e6b34;
+    padding:30px;
+    border-radius:15px;
+}
+
+.confirmation .check{
+    font-size:60px;
+    color:#32d66b;
+}
+
+.confirmation h2{
+    margin:15px 0;
+}
+
+.confirmation p{
+    color:#aaa;
+    line-height:1.7;
+}
+
+/* CONTATO */
+
+.contact{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:25px;
+}
+
+.contact-box{
+    background:#111;
+    border:1px solid #292929;
+    border-radius:15px;
+    padding:30px;
+}
+
+.contact-box h2{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.contact-box p{
+    color:#888;
+    line-height:1.7;
+}
+
+.contact-item{
+    border-top:1px solid #292929;
+    padding:15px 0;
+    margin-top:10px;
+}
+
+textarea{
+    width:100%;
+    min-height:130px;
+    resize:vertical;
+    background:#080808;
+    border:1px solid #333;
+    color:white;
+    padding:14px;
+    border-radius:7px;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.85);
+    z-index:2000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-content{
+    background:#111;
+    border:1px solid #333;
+    width:100%;
+    max-width:750px;
+    max-height:90vh;
+    overflow:auto;
+    border-radius:15px;
+    padding:30px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    top:10px;
+    right:18px;
+    background:none;
+    border:0;
+    color:white;
+    font-size:32px;
+    cursor:pointer;
+}
+
+.modal-content img{
+    width:100%;
+    max-height:350px;
+    object-fit:cover;
+    border-radius:10px;
+    margin:20px 0;
+}
+
+.modal-specs{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.modal-spec{
+    background:#080808;
+    padding:15px;
+    border-radius:8px;
+}
+
+.modal-spec span{
+    display:block;
+    color:#777;
+    font-size:12px;
+}
+
+.explanation{
+    margin-top:25px;
+    border-top:1px solid #292929;
+    padding-top:20px;
+}
+
+.explanation p{
+    color:#aaa;
+    line-height:1.7;
+    margin:10px 0;
+}
+
+footer{
+    border-top:1px solid #292929;
+    text-align:center;
+    padding:35px 20px;
+    color:#777;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+    .cars{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .parts,
+    .checkout,
+    .contact{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    nav ul{
+        display:none;
+    }
+
+    .cars{
+        grid-template-columns:1fr;
+    }
+
+    .filters{
+        flex-direction:column;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .part{
+        grid-template-columns:50px 1fr;
+    }
+
+    .part-price{
+        grid-column:2;
+    }
+
+    .modal-specs{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===================================================== -->
+<!-- HEADER -->
+<!-- ===================================================== -->
+
+<header>
+
+<nav>
+
+<div class="logo">
+VELOCITY<span>.</span>
+</div>
+
+<ul>
+<li><a href="#carros">Carros</a></li>
+<li><a href="#pecas">Peças</a></li>
+<li><a href="#checkout">Comprar</a></li>
+<li><a href="#contato">Contato</a></li>
+</ul>
+
+<button
+class="btn"
+onclick="irParaCheckout()">
+🛒 Comprar
+</button>
+
+</nav>
+
+</header>
+
+
+<!-- ===================================================== -->
+<!-- HERO -->
+<!-- ===================================================== -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<small>CARROS ESPORTIVOS</small>
+
+<h1>
+DIRIJA<br>
+<span>SEU SONHO.</span>
+</h1>
+
+<p>
+Encontre carros esportivos, veja potência, preço,
+ano, peças e especificações e faça sua solicitação
+de compra diretamente pelo site.
+</p>
+
+<div class="hero-buttons">
+
+<a
+href="#carros"
+class="btn">
+Ver carros
+</a>
+
+<a
+href="#pecas"
+class="btn-outline">
+Ver peças
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- CARROS -->
+<!-- ===================================================== -->
+
+<section id="carros">
+
+<div class="container">
+
+<div class="title">
+
+<small>CATÁLOGO</small>
+
+<h2>
+Carros esportivos
+</h2>
+
+<p>
+Escolha o carro que você deseja comprar.
+</p>
+
+</div>
+
+
+<div class="filters">
+
+<input
+id="search"
+placeholder="Pesquisar carro..."
+oninput="renderCars()"
+>
+
+<select
+id="brandFilter"
+onchange="renderCars()">
+
+<option value="todos">
+Todas as marcas
+</option>
+
+<option value="Ferrari">
+Ferrari
+</option>
+
+<option value="Lamborghini">
+Lamborghini
+</option>
+
+<option value="Toyota">
+Toyota
+</option>
+
+</select>
+
+</div>
+
+
+<div
+class="cars"
+id="carsContainer">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- PEÇAS -->
+<!-- ===================================================== -->
+
+<section id="pecas">
+
+<div class="container">
+
+<div class="title">
+
+<small>COMPONENTES</small>
+
+<h2>
+Peças
+</h2>
+
+<p>
+Conheça algumas peças e seus valores de referência.
+</p>
+
+</div>
+
+
+<div class="parts">
+
+<div class="part">
+
+<div class="part-icon">
+⚙️
+</div>
+
+<div>
+
+<h3>
+Motor V8
+</h3>
+
+<p>
+Responsável pela produção de potência do veículo.
+</p>
+
+</div>
+
+<div class="part-price">
+R$ 180.000
+</div>
+
+</div>
+
+
+<div class="part">
+
+<div class="part-icon">
+🔥
+</div>
+
+<div>
+
+<h3>
+Turbo
+</h3>
+
+<p>
+Aumenta a quantidade de ar que entra no motor.
+</p>
+
+</div>
+
+<div class="part-price">
+R$ 18.900
+</div>
+
+</div>
+
+
+<div class="part">
+
+<div class="part-icon">
+🛑
+</div>
+
+<div>
+
+<h3>
+Freios carbono-cerâmicos
+</h3>
+
+<p>
+Sistema desenvolvido para frenagens de alta performance.
+</p>
+
+</div>
+
+<div class="part-price">
+R$ 35.500
+</div>
+
+</div>
+
+
+<div class="part">
+
+<div class="part-icon">
+🛞
+</div>
+
+<div>
+
+<h3>
+Rodas forjadas
+</h3>
+
+<p>
+Rodas leves e resistentes para veículos esportivos.
+</p>
+
+</div>
+
+<div class="part-price">
+R$ 28.000
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- CHECKOUT -->
+<!-- ===================================================== -->
+
+<section id="checkout">
+
+<div class="container">
+
+<div class="title">
+
+<small>FINALIZAR COMPRA</small>
+
+<h2>
+Finalize seu pedido
+</h2>
+
+<p>
+Confira o veículo e informe seus dados.
+</p>
+
+</div>
+
+
+<div id="checkoutArea">
+
+<div class="checkout">
+
+
+<!-- RESUMO DO PEDIDO -->
+
+<div class="checkout-box">
+
+<h3>
+🚘 Seu carro
+</h3>
+
+<div id="selectedCar">
+</div>
+
+</div>
+
+
+<!-- DADOS -->
+
+<div class="checkout-box">
+
+<h3>
+👤 Dados do comprador
+</h3>
+
+
+<form
+id="checkoutForm"
+onsubmit="finalizarCompra(event)">
+
+
+<div class="form-group">
+
+<label>
+Nome completo
+</label>
+
+<input
+id="buyerName"
+required
+placeholder="Seu nome completo"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+CPF
+</label>
+
+<input
+id="cpf"
+required
+placeholder="000.000.000-00"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Telefone
+</label>
+
+<input
+id="buyerPhone"
+required
+placeholder="(00) 00000-0000"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+E-mail
+</label>
+
+<input
+id="buyerEmail"
+type="email"
+required
+placeholder="seu@email.com"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+CEP
+</label>
+
+<input
+id="cep"
+required
+placeholder="00000-000"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Endereço
+</label>
+
+<input
+id="address"
+required
+placeholder="Rua, número, bairro..."
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Cidade
+</label>
+
+<input
+id="city"
+required
+placeholder="Sua cidade"
+>
+
+</div>
+
+
+<div class="payment">
+
+<h3>
+💳 Forma de pagamento
+</h3>
+
+
+<label class="payment-option">
+
+<input
+type="radio"
+name="payment"
+value="Pix"
+required
+>
+
+PIX
+
+</label>
+
+
+<label class="payment-option">
+
+<input
+type="radio"
+name="payment"
+value="Cartão de crédito"
+>
+
+Cartão de crédito
+
+</label>
+
+
+<label class="payment-option">
+
+<input
+type="radio"
+name="payment"
+value="Financiamento"
+>
+
+Financiamento
+
+</label>
+
+
+<label class="payment-option">
+
+<input
+type="radio"
+name="payment"
+value="Transferência bancária"
+>
+
+Transferência bancária
+
+</label>
+
+</div>
+
+
+<br>
+
+
+<button
+class="btn"
+style="width:100%;font-size:17px"
+type="submit">
+
+🔒 FINALIZAR PEDIDO
+
+</button>
+
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CONFIRMAÇÃO -->
+
+<div
+class="confirmation"
+id="confirmation">
+
+<div class="check">
+✓
+</div>
+
+<h2>
+Pedido realizado!
+</h2>
+
+<p id="confirmationText">
+</p>
+
+<br>
+
+<button
+class="btn"
+onclick="falarComVendedor()">
+
+💬 Falar com vendedor
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================== -->
+<!-- CONTATO -->
+<!-- ===================================================== -->
+
+<section id="contato">
+
+<div class="container contact">
+
+
+<div class="contact-box">
+
+<small style="color:#e50914;font-weight:bold;">
+ATENDIMENTO
+</small>
+
+<h2>
+Fale com o vendedor
+</h2>
+
+<p>
+Entre em contato para negociar o veículo,
+tirar dúvidas ou solicitar informações.
+</p>
+
+<div class="contact-item">
+📞 <strong>Telefone:</strong><br>
+(11) 99999-0000
+</div>
+
+<div class="contact-item">
+💬 <strong>WhatsApp:</strong><br>
+(11) 99999-0000
+</div>
+
+<div class="contact-item">
+✉️ <strong>E-mail:</strong><br>
+vendas@velocitymotors.com
+</div>
+
+</div>
+
+
+<div class="contact-box">
+
+<h2>
+Enviar mensagem
+</h2>
+
+<form
+onsubmit="enviarMensagem(event)">
+
+<div class="form-group">
+
+<label>
+Nome
+</label>
+
+<input
+id="contactName"
+required
+placeholder="Seu nome"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+Mensagem
+</label>
+
+<textarea
+id="contactMessage"
+required
+placeholder="Digite sua mensagem..."
+></textarea>
+
+</div>
+
+
+<button
+class="btn"
+type="submit">
+
+Enviar mensagem
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+© 2026 Velocity Motors
+
+<br><br>
+
+Este site é um projeto demonstrativo.
+Os valores dos veículos e peças são exemplos.
+
+</footer>
+
+
+<!-- ===================================================== -->
+<!-- MODAL -->
+<!-- ===================================================== -->
+
+<div
+class="modal"
+id="carModal">
+
+<div class="modal-content">
+
+<button
+class="close"
+onclick="closeModal()">
+×
+</button>
+
+<div id="modalData">
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   BANCO DE CARROS
+===================================================== */
+
+const cars = [
+
+{
+brand:"Ferrari",
+name:"488 GTB",
+year:2019,
+price:3290000,
+power:670,
+engine:"V8 3.9 Biturbo",
+transmission:"Automático 7 marchas",
+traction:"Traseira",
+image:"https://images.unsplash.com/photo-1592198084033-aade902d1aae?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+brand:"Lamborghini",
+name:"Huracán EVO",
+year:2022,
+price:3990000,
+power:640,
+engine:"V10 5.2 Aspirado",
+transmission:"Automático 7 marchas",
+traction:"Integral",
+image:"https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+brand:"Toyota",
+name:"GR Supra",
+year:2024,
+price:699900,
+power:387,
+engine:"I6 3.0 Turbo",
+transmission:"Automático 8 marchas",
+traction:"Traseira",
+image:"https://images.unsplash.com/photo-1614200187524-dc4b892acf16?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+brand:"Ferrari",
+name:"F8 Tributo",
+year:2021,
+price:4200000,
+power:720,
+engine:"V8 3.9 Biturbo",
+transmission:"Automático 7 marchas",
+traction:"Traseira",
+image:"https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=90"
+},
+
+{
+brand:"Lamborghini",
+name:"Aventador",
+year:2020,
+price:5800000,
+power:770,
+engine:"V12 6.5",
+transmission:"Automatizado 7 marchas",
+traction:"Integral",
+image:"https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&w=1200&q=90"
+}
+
+];
+
+
+/* =====================================================
+   VARIÁVEL DO CARRO ESCOLHIDO
+===================================================== */
+
+let selectedCar = null;
+
+
+/* =====================================================
+   FORMATAÇÃO DE DINHEIRO
+===================================================== */
+
+function money(value){
+
+return value.toLocaleString(
+"pt-BR",
+{
+style:"currency",
+currency:"BRL",
+maximumFractionDigits:0
+}
+);
+
+}
+
+
+/* =====================================================
+   MOSTRAR CARROS
+===================================================== */
+
+function renderCars(){
+
+const container =
+document.getElementById("carsContainer");
+
+const search =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+const brand =
+document.getElementById("brandFilter")
+.value;
+
+
+const filtered = cars.filter(car => {
+
+const searchOK =
+car.name.toLowerCase().includes(search)
+||
+car.brand.toLowerCase().includes(search);
+
+const brandOK =
+brand === "todos"
+||
+car.brand === brand;
+
+return searchOK && brandOK;
+
+});
+
+
+container.innerHTML = "";
+
+
+filtered.forEach((car,index)=>{
+
+const originalIndex =
+cars.indexOf(car);
+
+container.innerHTML += `
+
+<div class="car-card">
+
+<div class="car-image">
+
+<img
+src="${car.image}"
+alt="${car.brand} ${car.name}"
+>
+
+<div class="year">
+${car.year}
+</div>
+
+</div>
+
+
+<div class="car-info">
+
+<div class="brand">
+${car.brand}
+</div>
+
+<h3>
+${car.name}
+</h3>
+
+
+<div class="specs">
+
+<div class="spec">
+<strong>
+${car.power} cv
+</strong>
+<span>
+Potência
+</span>
+</div>
+
+<div class="spec">
+<strong>
+${car.engine}
+</strong>
+<span>
+Motor
+</span>
+</div>
+
+<div class="spec">
+<strong>
+${car.traction}
+</strong>
+<span>
+Tração
+</span>
+</div>
+
+</div>
+
+
+<div class="price">
+${money(car.price)}
+</div>
+
+
+<div class="car-buttons">
+
+<button
+class="btn"
+onclick="showCar(${originalIndex})">
+
+Detalhes
+
+</button>
+
+
+<button
+class="btn"
+onclick="comprarCarro(${originalIndex})">
+
+Comprar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =====================================================
+   DETALHES
+===================================================== */
+
+function showCar(index){
+
+const car = cars[index];
+
+document.getElementById("modalData").innerHTML = `
+
+<div class="brand">
+${car.brand}
+</div>
+
+<h2>
+${car.name}
+</h2>
+
+<p>
+Ano ${car.year}
+</p>
+
+<img
+src="${car.image}"
+alt="${car.name}"
+>
+
+
+<div class="modal-specs">
+
+<div class="modal-spec">
+<strong>${car.power} cv</strong>
+<span>Potência</span>
+</div>
+
+<div class="modal-spec">
+<strong>${car.engine}</strong>
+<span>Motor</span>
+</div>
+
+<div class="modal-spec">
+<strong>${car.transmission}</strong>
+<span>Câmbio</span>
+</div>
+
+<div class="modal-spec">
+<strong>${car.traction}</strong>
+<span>Tração</span>
+</div>
+
+</div>
+
+
+<h2
+style="color:#d8ad63;margin-top:20px">
+
+${money(car.price)}
+
+</h2>
+
+
+<div class="explanation">
+
+<h3>
+Como as peças funcionam
+</h3>
+
+<p>
+<strong>Motor:</strong>
+transforma a energia da combustão em movimento.
+</p>
+
+<p>
+<strong>Turbo:</strong>
+comprime o ar que entra no motor para aumentar
+a quantidade de ar disponível para combustão.
+</p>
+
+<p>
+<strong>Câmbio:</strong>
+transmite a força do motor para as rodas através
+de diferentes relações.
+</p>
+
+<p>
+<strong>Freios:</strong>
+utilizam discos e pastilhas para reduzir a velocidade.
+</p>
+
+<br>
+
+<button
+class="btn"
+onclick="comprarCarro(${index})">
+
+Comprar este carro
+
+</button>
+
+</div>
+
+`;
+
+document
+.getElementById("carModal")
+.classList.add("active");
+
+}
+
+
+/* =====================================================
+   FECHAR MODAL
+===================================================== */
+
+function closeModal(){
+
+document
+.getElementById("carModal")
+.classList.remove("active");
+
+}
+
+
+/* =====================================================
+   COMPRAR CARRO
+===================================================== */
+
+function comprarCarro(index){
+
+selectedCar = cars[index];
+
+closeModal();
+
+mostrarCheckout();
+
+}
+
+
+/* =====================================================
+   ABRIR CHECKOUT
+===================================================== */
+
+function mostrarCheckout(){
+
+if(!selectedCar){
+
+alert("Primeiro escolha um carro.");
+
+return;
+
+}
+
+
+document
+.getElementById("checkout")
+.style.display = "block";
+
+
+document
+.getElementById("selectedCar")
+.innerHTML = `
+
+<div class="order-car">
+
+<img
+src="${selectedCar.image}"
+alt="${selectedCar.name}"
+>
+
+<div>
+
+<h4>
+${selectedCar.brand}
+${selectedCar.name}
+</h4>
+
+<p>
+Ano: ${selectedCar.year}
+</p>
+
+<p>
+Potência: ${selectedCar.power} cv
+</p>
+
+</div>
+
+</div>
+
+
+<div class="order-price">
+
+${money(selectedCar.price)}
+
+</div>
+
+`;
+
+
+document
+.getElementById("checkout")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* =====================================================
+   BOTÃO COMPRAR DO MENU
+===================================================== */
+
+function irParaCheckout(){
+
+if(!selectedCar){
+
+alert(
+"Escolha primeiro um carro no catálogo."
+);
+
+document
+.getElementById("carros")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+return;
+
+}
+
+mostrarCheckout();
+
+}
+
+
+/* =====================================================
+   FINALIZAR PEDIDO
+===================================================== */
+
+function finalizarCompra(event){
+
+event.preventDefault();
+
+
+if(!selectedCar){
+
+alert("Nenhum carro selecionado.");
+
+return;
+
+}
+
+
+const name =
+document.getElementById("buyerName").value;
+
+const payment =
+document.querySelector(
+'input[name="payment"]:checked'
+).value;
+
+
+/*
+    GERA UM NÚMERO DE PEDIDO
+*/
+
+const orderNumber =
+"VM-" +
+Date.now().toString().slice(-8);
+
+
+/*
+    MOSTRA CONFIRMAÇÃO
+*/
+
+document
+.getElementById("checkoutArea")
+.style.display = "none";
+
+
+document
+.getElementById("confirmation")
+.style.display = "block";
+
+
+document
+.getElementById("confirmationText")
+.innerHTML = `
+
+Olá, <strong>${name}</strong>!
+
+<br><br>
+
+Seu pedido foi registrado.
+
+<br><br>
+
+<strong>
+Pedido: ${orderNumber}
+</strong>
+
+<br>
+
+Carro:
+<strong>
+${selectedCar.brand} ${selectedCar.name}
+</strong>
+
+<br>
+
+Valor:
+<strong>
+${money(selectedCar.price)}
+</strong>
+
+<br>
+
+Pagamento:
+<strong>
+${payment}
+</strong>
+
+<br><br>
+
+Um vendedor deverá entrar em contato para
+confirmar disponibilidade, documentação,
+contrato e pagamento.
+
+`;
+
+}
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+function falarComVendedor(){
+
+if(!selectedCar){
+
+return;
+
+}
+
+
+const message =
+`Olá! Acabei de solicitar a compra do ${selectedCar.brand} ${selectedCar.name} ${selectedCar.year}, no valor de ${money(selectedCar.price)}. Gostaria de falar com um vendedor.`;
+
+
+/*
+    TROQUE 5511999990000 PELO
+    NÚMERO REAL DA EMPRESA.
+
+    FORMATO:
+    55 + DDD + NÚMERO
+*/
+
+const whatsappNumber =
+"5511999990000";
+
+
+const url =
+"https://wa.me/" +
+whatsappNumber +
+"?text=" +
+encodeURIComponent(message);
+
+
+window.open(url,"_blank");
+
+}
+
+
+/* =====================================================
+   MENSAGEM DE CONTATO
+===================================================== */
+
+function enviarMensagem(event){
+
+event.preventDefault();
+
+const name =
+document.getElementById("contactName").value;
+
+
+alert(
+"Mensagem enviada, " +
+name +
+"!\n\n" +
+"Este formulário está funcionando como demonstração."
+);
+
+}
+
+
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+
+renderCars();
+
+
+/* FECHAR MODAL CLICANDO FORA */
+
+document
+.getElementById("carModal")
+.addEventListener(
+"click",
+function(event){
+
+if(event.target === this){
+
+closeModal();
+
+}
+
+}
+);
+
+</script>
+
+</body>
+</html>
